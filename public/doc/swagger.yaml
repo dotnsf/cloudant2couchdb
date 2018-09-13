@@ -1,0 +1,101 @@
+swagger: '2.0'
+info:
+  description: API Document
+  version: 0.0.1
+  title: Platform REST API
+host: localhost:3001
+basePath: /
+tags:
+  - name: document
+    description: APIs for document(s)
+schemes:
+  - http
+  - https
+paths:
+  /doc/{id}:
+    get:
+      tags:
+        - document
+      summary: Get single document
+      description: Get single document from id.
+      parameters:
+        - name: id
+          type: string
+          in: path
+          description: id of document
+          required: true
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Access error
+    delete:
+      tags:
+        - document
+      summary: Delete single document
+      description: Delete single document from id.
+      parameters:
+        - name: id
+          type: string
+          in: path
+          description: id of document
+          required: true
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Access error
+  /doc:
+    post:
+      tags:
+        - document
+      summary: Create document
+      description: Create new document
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/DocRequest'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Access error
+  /docs:
+    get:
+      tags:
+        - document
+      summary: Get all documents
+      description: Get all documents
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Access error
+  /reset:
+    post:
+      tags:
+        - document
+      summary: Reset ledger
+      description: Reset ledger
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Access error
+definitions:
+  DocRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        description: name
+      age:
+        type: integer
+        description: age
